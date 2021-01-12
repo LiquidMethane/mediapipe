@@ -14,6 +14,7 @@
 
 #include <cmath>
 #include <memory>
+#include <fstream>
 
 #include "absl/strings/str_cat.h"
 #include "mediapipe/framework/calculator_framework.h"
@@ -177,6 +178,27 @@ REGISTER_CALCULATOR(IrisToDepthCalculator);
   auto right_iris = absl::make_unique<NormalizedLandmarkList>();
   GetLeftIris(iris_landmarks, left_iris.get());
   GetRightIris(iris_landmarks, right_iris.get());
+
+  //output iris landmarks to console
+  LOG(INFO) << "Left Iris:\n";
+  LOG(INFO) << "Center    " << left_iris->landmark(0).x() * image_size.first << '\t' << left_iris->landmark(0).y() * image_size.second << '\n';
+  LOG(INFO) << "Top       " << left_iris->landmark(1).x() * image_size.first << '\t' << left_iris->landmark(1).y() * image_size.second << '\n';
+  LOG(INFO) << "Bottom    " << left_iris->landmark(2).x() * image_size.first << '\t' << left_iris->landmark(2).y() * image_size.second << '\n';
+  LOG(INFO) << "Left      " << left_iris->landmark(3).x() * image_size.first << '\t' << left_iris->landmark(3).y() * image_size.second << '\n';
+  LOG(INFO) << "Right     " << left_iris->landmark(4).x() * image_size.first << '\t' << left_iris->landmark(4).y() * image_size.second << '\n';
+
+  LOG(INFO) << "Right Iris:\n";
+  LOG(INFO) << "Center    " << right_iris->landmark(0).x() * image_size.first << '\t' << right_iris->landmark(0).y() * image_size.second << '\n';
+  LOG(INFO) << "Top       " << right_iris->landmark(1).x() * image_size.first << '\t' << right_iris->landmark(1).y() * image_size.second << '\n';
+  LOG(INFO) << "Bottom    " << right_iris->landmark(2).x() * image_size.first << '\t' << right_iris->landmark(2).y() * image_size.second << '\n';
+  LOG(INFO) << "Left      " << right_iris->landmark(3).x() * image_size.first << '\t' << right_iris->landmark(3).y() * image_size.second << '\n';
+  LOG(INFO) << "Right     " << right_iris->landmark(4).x() * image_size.first << '\t' << right_iris->landmark(4).y() * image_size.second << '\n';
+
+  //append iris landmarks to file
+
+  // std::ofstream outFile;
+
+  // out.open("")
 
   const auto left_iris_size = CalculateIrisDiameter(*left_iris, image_size);
   const auto right_iris_size = CalculateIrisDiameter(*right_iris, image_size);

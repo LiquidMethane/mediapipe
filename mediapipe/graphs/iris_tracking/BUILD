@@ -38,6 +38,22 @@ cc_library(
 )
 
 cc_library(
+    name = "iris_landmarks_cpu_deps",
+    deps = [
+        "//mediapipe/calculators/core:constant_side_packet_calculator",
+        "//mediapipe/calculators/core:flow_limiter_calculator",
+        "//mediapipe/calculators/core:split_vector_calculator",
+        "//mediapipe/calculators/core:split_normalized_landmark_list_calculator",
+        "//mediapipe/calculators/core:pass_through_calculator",
+        "//mediapipe/calculators/image:image_file_properties_calculator",
+        "//mediapipe/calculators/image:opencv_encoded_image_to_image_frame_calculator",
+        "//mediapipe/calculators/image:opencv_image_encoder_calculator",
+        "//mediapipe/modules/face_landmark:face_landmark_front_cpu",
+        "//mediapipe/modules/iris_landmark:iris_landmark_left_and_right_cpu",
+    ],
+)
+
+cc_library(
     name = "iris_tracking_cpu_deps",
     deps = [
         "//mediapipe/calculators/core:constant_side_packet_calculator",
